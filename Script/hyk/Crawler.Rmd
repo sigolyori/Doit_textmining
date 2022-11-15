@@ -1,0 +1,79 @@
+---
+title: "Crawler"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+url <- "https://program.naver.com/p/9904885/talk"
+```
+
+```{r}
+library(rvest)
+```
+```{r}
+html <- read_html(url)
+```
+
+```{r}
+html_nodes(html, "")
+```
+
+```{python}
+print("Hello")
+```
+
+```{r}
+library(RSelenium)
+```
+
+```{r}
+pJS <- wdman::phantomjs(port = 4567L)
+```
+
+```{r}
+remDr <- remoteDriver(port = 4567L, browserName = "phantomjs")
+```
+
+```{r}
+remDr$open()
+```
+
+```{r}
+remDr$navigate("https://program.naver.com/p/9904885/talk/")
+```
+
+```{r}
+remDr$getTitle()[[1]]
+```
+
+```{r}
+remDr$screenshot(display = TRUE)
+```
+
+```{r}
+library(httr)
+library(dplyr)
+library(rvest)
+```
+
+```{r}
+webElems <- remDr$findElement(using = "css", ".u_cbox_contents")
+```
+
+```{r}
+webElems$getElementTagName()
+```
+
+
+```{r}
+sentences <- webElems$getElementText()
+```
+
+```{r}
+pJS$stop()
+```
+

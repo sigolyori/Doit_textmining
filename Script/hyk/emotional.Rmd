@@ -1,0 +1,33 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+library(readr)
+dic = read_csv("Data/knu_sentiment_lexicon.csv")
+```
+
+```{r}
+dic %>% 
+  filter(polarity == 2) %>% 
+  arrange(word)
+```
+
+```{r}
+dic %>% 
+  filter(polarity == -2) %>% 
+  arrange(word)
+```
+
+```{r}
+library(stringr)
+```
+
+```{r}
+dic %>% 
+  filter(!str_detect(word, "[가-힣]")) %>% 
+  arrange(word)
+```
+
